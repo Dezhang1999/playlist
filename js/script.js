@@ -28,7 +28,7 @@ var mySong = {
 	"imageURL": "https://images-na.ssl-images-amazon.com/images/I/51cB3PoKceL._AC_US500_FMwebp_QL65_.jpg",
 	"playURL": "https://open.spotify.com/track/4v52HuhZqVV0eNpP6vzH5I",
 
-}
+};
 
 var myPlayList = [
 	{
@@ -50,7 +50,7 @@ var myPlayList = [
 		"playURL": "https://open.spotify.com/track/7cGfrVoC7G03XeXn7yflx5",
 	}
 
-]
+];
 
 
 
@@ -59,26 +59,45 @@ $( document ).ready(function() {
 	// everything inside this function happens as soon as the page loads!
 displaySong(mySong);
 displayList(myPlayList);
+alert("The MAXIMUM CAPACITY OF THIS Playlist are 10 songs!");
+$("button").click(function(){
+number();
+if(t === 1){
+	clearList();
+	addSong();
+}else{
+	addSong();
+}
+var l = 10-t;
+if(l < 0){
+	l = l+10;	
+}
+alert("You have " + l +" more songs to add!");
+	
+if(Number.isInteger(t/11) === true){
+	$(".card-body").html(" ");
+	alert("You have exceed MAXIMUM CAPACITY " + t/11 + " times!");
+}
 
 });
-
+});
 // displaySong uses the properties in the songObject to create an HTML element for a single song
 //	  and appends the element to the playlist on the page
 function displaySong(songObject){
 	
 $("body").append("<div id ='songInfo'></div>");
 
-var y = "<p>" + songObject.title + "</p>";
-$("#songInfo").append(y);
+var y = "<h>" + songObject.title + "</h>";
+$(".card-body").append(y);
 
 var u = "<p>" + songObject.artist + "</p>";
-$("#songInfo").append(u);
+$(".card-body").append(u);
 
-var i = "<p>" + songObject.imageURL + "</p>";
-$("#songInfo").append(i);
+var i = "<img src=" + songObject.imageURL + ">";
+$(".card-body").append(i);
 
-var o = "<p>" + mySong.playURL + "</p>";
-$("#songInfo").append(o);
+var o = "<a href='" +  mySong.playURL + "'" +"Play Now" + "</a>";
+$(".card-body").append(o);
 
 
 }
@@ -86,7 +105,7 @@ $("#songInfo").append(o);
 // displayList takes in an array of song objects, and it uses the information from each song object
 //    to create an HTML element and append it to the playlist on the page
 function displayList(songsArray){
-for(var i = 1; i < 4; i++){
+for(var i = 0; i < songsArray.length; i++){
 	
 	displaySong(songsArray[i]);
 	
@@ -98,9 +117,7 @@ for(var i = 1; i < 4; i++){
 
 // clearList removes all the content from the playlist on the page
 function clearList(){
-
-
-
+$(".card-body").text(" ");
 }
 
 // addSong takes inputs from the input boxes, organizes them into a new song object, and
@@ -117,9 +134,25 @@ var newsong = {
 		"artist": artistfield,
 		"imageURL": playlinkfield,
 		"playURL": albumimagefield,
+};
+	$(".card-body").append("<h3>"+ newsong.title + "</h3>");
+	$(".card-body").append("<p>"+ newsong.artist + "</p>");
+	$(".card-body").append("<a href="+ "'" + newsong.playURL + "'"+">Play Now</a>");
+	$(".card-body").append("<img src="+'"'+newsong.imageURL+'"'+" "+"class"+ '"'+"song-image img-thumbnail float-right"+'"'+">");
+	
 }
-$("#submit").click(function() {
-	
-	myPlayList.push(newsong)
-	
-	)
+var t = 0;
+function number(){
+	t=t+1;
+}
+
+
+
+
+
+
+
+
+
+
+
