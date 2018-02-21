@@ -77,6 +77,7 @@ alert("You have " + l +" more songs to add!");
 if(Number.isInteger(t/11) === true){
 	$(".card-body").html(" ");
 	alert("You have exceed MAXIMUM CAPACITY " + t/11 + " times!");
+	addSong();
 }
 
 });
@@ -132,8 +133,8 @@ function addSong(){
 var newsong = {
 		"title": titlefield,
 		"artist": artistfield,
-		"imageURL": playlinkfield,
-		"playURL": albumimagefield,
+		"imageURL": albumimagefield,
+		"playURL": playlinkfield,
 };
 	$(".card-body").append("<h3>"+ newsong.title + "</h3>");
 	$(".card-body").append("<p>"+ newsong.artist + "</p>");
